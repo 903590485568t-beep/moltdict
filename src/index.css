@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .wonky-border {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+  
+  .wonky-border-sm {
+    border-radius: 25px 5px 22px 5px / 5px 22px 5px 25px;
+  }
+
+  .text-outline {
+    text-shadow: 
+      -2px -2px 0 #800000,  
+       2px -2px 0 #800000,
+      -2px  2px 0 #800000,
+       2px  2px 0 #800000;
+  }
+  
+  .bg-grid-pattern {
+    background-image: radial-gradient(#4a1010 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}
+
+body {
+  @apply bg-claw-bg text-claw-text font-wonky;
+  background-image: radial-gradient(#330000 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Custom scrollbar to look drawn */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0505; 
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4d4d; 
+  border-radius: 5px;
+}
