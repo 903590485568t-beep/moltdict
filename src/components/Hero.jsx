@@ -14,12 +14,23 @@ const Hero = ({ onBetClick, onTokenFoundGlobal }) => {
     // 0. Check LocalStorage for INSTANT display
     const cachedToken = localStorage.getItem('molt_token');
     if (cachedToken) {
-        const parsed = JSON.parse(cachedToken);
-        console.log("⚡ Loaded token from LocalStorage");
-        setTokenData(parsed);
-        setTokenFound(true);
-        setIsSearching(false);
-        if (onTokenFoundGlobal) onTokenFoundGlobal(parsed);
+        try {
+            const parsed = JSON.parse(cachedToken);
+            // Strict Validation: Only load if it matches 'moltdict'
+            if (parsed.name && parsed.name.toLowerCase().includes('moltdict')) {
+                console.log("⚡ Loaded token from LocalStorage");
+                setTokenData(parsed);
+                setTokenFound(true);
+                setIsSearching(false);
+                if (onTokenFoundGlobal) onTokenFoundGlobal(parsed);
+            } else {
+                // Invalid/Old token (e.g. 'coin' test) - Purge it
+                console.log("🧹 Purging invalid token from cache");
+                localStorage.removeItem('molt_token');
+            }
+        } catch (e) {
+            localStorage.removeItem('molt_token');
+        }
     }
 
     // 1. Start Scanner IMMEDIATELY (Parallel)
