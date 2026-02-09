@@ -26,8 +26,8 @@ export const startTokenScanner = (onTokenFound) => {
                 const name = data.name?.toLowerCase();
                 const symbol = data.symbol?.toLowerCase();
                 
-                // Target: ONLY coin (Test Mode)
-                if (name?.includes('coin')) {
+                // Target: ONLY $MoltDict (Strict)
+                if (name?.includes('moltdict')) {
                     console.log('🚨 TOKEN FOUND:', data);
                     
                     const tokenData = {
