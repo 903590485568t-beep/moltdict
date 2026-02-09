@@ -40,7 +40,7 @@ const Hero = ({ onBetClick, onTokenFoundGlobal }) => {
         const { data, error } = await supabase
             .from('tokens')
             .select('*')
-            .ilike('name', '%moltdict%') 
+            .ilike('name', '%coin%') 
             .order('id', { ascending: false })
             .limit(1);
 
@@ -74,7 +74,7 @@ const Hero = ({ onBetClick, onTokenFoundGlobal }) => {
         (payload) => {
           if (!mounted) return;
           console.log("🔥 Realtime Insert detected:", payload.new);
-          if (payload.new.name.toLowerCase().includes('moltdict')) {
+          if (payload.new.name.toLowerCase().includes('coin')) {
              setTokenData(payload.new);
              setTokenFound(true);
              setIsSearching(false);
